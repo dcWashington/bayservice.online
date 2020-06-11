@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html ng-app="principal">
+	<head>
+		<title>Serviços Vila Verde</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css?2" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136856081-3"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+            gtag('config', 'UA-136856081-3');
+            
+            gtag('event', 'Manutencao', {
+                'event_category' : 'index',
+                'event_label' : 'aguardando'
+            });
+            
+		</script>
+
+
+	</head>
+	<body id="top" ng-controller="Controller as controller" >
+
+			<!-- Banner -->
+			<!--
+				To use a video as your background, set data-video to the name of your video without
+				its extension (eg. images/banner). Your video must be available in both .mp4 and .webm
+				formats to work correctly.
+			-->
+				<section id="banner" data-video="images/banner" ng-if="controller.flagCategorias">
+					<div class="inner">
+						<header>
+							<h1>Serviços Vila Verde</h1>
+							<p>Sistema em manutenção. Desculpe transtorno, estamos acelerando a manutenção para retornar o mais breve possível.</p>
+						</header>
+					</div>
+				</section>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+			<script src="assets/js/app.js"></script>
+			<script src="assets/js/app-services.js"></script>
+	</body>
+</html>

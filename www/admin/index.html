@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Login</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- CSS VENDOR -->
+        <link href="css/vendor/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="css/vendor/normalize/normalize.css" rel="stylesheet">
+ 
+        <!-- CSS MINE -->
+        <link href="css/global.css" rel="stylesheet">
+        <link href="css/fonts.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
+        <link href="css/home.css" rel="stylesheet">
+        <link href="css/login.css" rel="stylesheet">
+        <link href="css/cadastro.css" rel="stylesheet"> 
+        <link href="css/modal-mensagem.css" rel="stylesheet">
+        
+        <!-- JS VENDOR -->
+        <script src="javascript/vendor/jquery/jquery.min.js"></script>
+        <script src="javascript/vendor/bootstrap/bootstrap.min.js"></script>
+        
+        <script src="javascript/vendor/angular/angular-1.5.8.js"></script>
+        <script src="javascript/vendor/angular/angular-sanitize.js"></script>
+        <script src="javascript/vendor/angular/ui-bootstrap-tpls-2.2.0.js"></script>
+        <script src="javascript/vendor/angular/angular-route.js"></script>
+        <script src="javascript/vendor/angular-base64/angular-base64.js"></script>
+        <script src="javascript/vendor/ng-storage/ngStorage.js"></script>
+        <script src="javascript/vendor/angular-logger/angular-logger.min.js"></script>
+		
+
+
+        <script src="javascript/vendor/chartjs/Chart.js"></script> 
+        <script src="javascript/vendor/chartjs/utils.js"></script> 
+
+        <script src="javascript/vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script> 
+        <script src="javascript/vendor/angular-input-masks/angular-locale_pt-br.js"></script>
+
+
+        <!-- JS MINE -->
+        <script src="javascript/app.js"></script>
+        <script src="javascript/routes.js"></script>
+        <script src="javascript/config.js"></script>
+
+        <!-- MODULES -->
+        <script src="javascript/controllers/login-controller.js"></script>
+        <script src="javascript/controllers/grafico-controller.js"></script>
+        <script src="javascript/controllers/cadastro-controller.js"></script>
+        <script src="javascript/servicos/cadastro-service.js"></script>
+        <script src="javascript/controllers/navegador-controller.js"></script>
+        <script src="javascript/servicos/login-service.js"></script>
+        <script src="javascript/diretivas/global-directive.js"></script>
+        <script src="javascript/utils/functions-utils.js"></script>
+        <script src="javascript/filtros/contas-filter.js"></script>
+        <script src="javascript/servicos/log/log-service.js"></script> 
+        <script src="javascript/servicos/session/session-service.js"></script>
+
+        <!-- MODAIS -->
+        <script src="javascript/componentes/component-modal.js"></script>
+        <script src="javascript/controllers/global/modal-default-controller.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157808252-6"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-157808252-6');
+		</script>
+
+    </head>
+    <body ng-app="controlei" id="index">
+        <nav class="navbar navbar-inverse" ng-controller="NavegadorController">
+            <button id="sair" ng-click="logout()" ng-show="flagMostrarMenu" type="button" class="btn btn-default" aria-label="Left Align">
+                LOG OUT
+            </button>
+            <h3 class="saudacao" ng-show="flagMostrarMenu">Welcome!</h3>
+        </nav>   
+        <div class="base">
+            <div class="loading-wrapper" loading>
+                <div class="loading"></div>
+                <div class="overlay2"></div>
+            </div>    
+            <div ng-view class="view"></div>
+        </div>
+        <div class="footer">
+            <div class="wrapper">
+                <ul class="itens">
+                    <li class="item"><a href="javascript:void(0)">item1</a></li>
+                    <li class="item"><a href="javascript:void(0)">item2</a></li>
+                    <li class="item"><a href="javascript:void(0)">item3</a></li>
+                    <li class="item"><a href="javascript:void(0)">item4</a></li>
+                </ul>
+                <hr />
+                <div class="rodape center">
+                    <span class="center">
+                        Copyright &copy; - PWMS - version: v1.0
+                    </span>
+                    <span class="direita">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+ <div id="cadastro" class="container-fluid">
+	<div class="botao-servico" ng-if="servicos.length>0 && !flagEditando">
+		<label>Services:</label>
+		<button class="botoes btn btn-warning" ng-repeat="servico in servicos" ng-click="selecionar(servico)">{{servico.nomeFantasia | limitTo : 34}}{{servico.nomeFantasia.length > 34 ? '...' : ''}}</button>
+	</div>
+	<button class="botoes btn btn-success" ng-click="novo()" ng-if="!flagEditando">add new service</button>
+	<form id="fileUploadForm" name="form" ng-if="flagEditando" ng-init="confirmar=false">
+		<div class="form-group">
+			<label>Business name (*) </label>
+			<input type="text" class="form-control" required ng-model="objeto.nomeFantasia" placeholder="example: Andy OnCall">
+		</div>
+		<div class="form-group">
+			<label>Description (limit: {{255 - objeto.descricao.length}})</label>
+			<textarea maxlength="255" class="form-control" ng-model="objeto.descricao" placeholder="example: Providing repair guidance and cleaning and remodeling community spaces"/>
+		</div>
+		<div class="form-group">
+			<label>Business Category (*) </label>
+			<select class="form-control" ng-model="objeto.categoria" required>
+				<option selected>Select one category</option>
+				<option value="{{categoria.id}}" ng-repeat="categoria in categorias" ng-if="!categoria.deleted_at">{{categoria.titulo}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Picture</label>
+			<input type="file" name="files" class="form-control" ng-model="objeto.logo" onchange="angular.element(this).scope().upload()">
+			<img class="thumb" ng-if="objeto.logo" ng-src="../back/public/upload/{{objeto.logo}}" width="100px" >
+		</div>
+		<div class="form-group">
+			<label>Mobile Phone Number</label>
+			<input type="text" class="form-control" ng-model="objeto.celular" placeholder="example: 408 000-0000">
+		</div>
+		<div class="form-group">
+			<label>Phone Number</label>
+			<input type="text" class="form-control" ng-model="objeto.telefone" placeholder="example: 11-4148-8592">
+		</div>
+		<div class="form-group">
+			<label>Website</label>
+			<input type="text" class="form-control" ng-model="objeto.site" placeholder="example: https://www.washingtonluis.com">
+			<div class="exemplo" ng-if="objeto.site">
+				<span class="exemplo-texto">How it will look like(click here to test): </span>
+				<a href="{{objeto.site}}" target="_blank" class="exemplo-link">{{objeto.site}}</a>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Facebook</label>
+			<input type="text" class="form-control" ng-model="objeto.facebook" placeholder="example: Moran-Handyman">
+			<div class="exemplo" ng-if="objeto.facebook">
+				<span class="exemplo-texto">How it will look like(click here to test): </span>
+				<a href="https://www.facebook.com/{{objeto.facebook}}" target="_blank" class="exemplo-link">https://www.facebook.com/{{objeto.facebook}}</a >
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Instagram (without @)</label>
+			<input type="text" class="form-control" ng-model="objeto.instagram" placeholder="example: Moran-Handyman">
+			<div class="exemplo" ng-if="objeto.instagram">
+				<span class="exemplo-texto">How it will look like(click here to test): </span>
+				<a href="https://www.instagram.com/{{objeto.instagram}}" target="_blank" class="exemplo-link">https://www.instagram.com/{{objeto.instagram}}</a>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Address (limit: {{255 - objeto.detalhes.length}})</label>
+			<textarea maxlength="255" class="form-control" ng-model="objeto.endereco" placeholder="example: 3400 Richmond Parkway  Richmond, CA 94806"/>
+		</div>
+		<div class="form-group">
+			(*) Required
+		</div>
+		
+		<button type="submit" class="btn btn-success" ng-click="salvar()" ng-disabled="!form.$valid">Save</button>
+		<button type="button" class="btn btn-warning" ng-click="voltar()">Back</button>
+		<button type="button" 
+			class="btn btn-danger" 
+			ng-click="objeto.confirmarExclusao=true" 
+			ng-if="objeto.concorrente_id && objeto.confirmarExclusao!=true">Delete</button>
+		<button type="button" 
+			class="btn btn-danger" 
+			ng-click="excluir()" 
+			ng-mouseleave="objeto.confirmarExclusao=false"
+			ng-if="objeto.concorrente_id && objeto.confirmarExclusao==true">Are you sure?</button>
+			
+	</form>
+</div>

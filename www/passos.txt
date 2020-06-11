@@ -1,0 +1,41 @@
+- O composer ja estava instalado no servidor integrator
+- nao esta indo no integrator de jeito nenhum
+- estou tentando instalar o composer no mac
+- instalei
+- agora tentando instalar o laravel, reclamou de bibliotecas zip
+- tentando reinstalar o php
+    brew install php@7.3
+    brew link php@7.3 --force
+
+    export PATH="/usr/local/opt/php@7.3/bin:$PATH" >> ~/.bash_profile
+    export PATH="/usr/local/opt/php@7.3/sbin:$PATH" >> ~/.bash_profile
+    source ~/.bash_profile
+    php composer.phar update --no-scripts
+
+    https://duvien.com/blog/installing-composer-mac-osx
+
+- php artisan migrate
+- ufa migrou
+
+
+
+scp ../index.html waisoc@pwms.com.br:~/web/servicosvilaverde.com.br/
+scp ../assets/css/main.css waisoc@pwms.com.br:~/web/servicosvilaverde.com.br/assets/main.css
+
+- que treta, para fazer funcionar o backend generico, tive que criar um dominio extra e apontar para la
+
+
+0	0	*	*	*
+mysqldump --defaults-file=~/backups-banco/.my.cnf memphisn_sistema > ~/backups-banco/memphisn_sistema/memphisn_sistema-$(date +\%Y\%m\%d).sql
+
+0	0	*	*	*
+find ~/backups-banco/memphisn_sistema/ -mtime +10 -exec rm -r {} \;
+
+
+backups-banco/.my.cnf
+[mysqldump]
+user=memphisn_sistema
+password=sistema123
+
+mysqldump --defaults-file=~/web/servicosvilaverde.com.br/backup-banco/.my.cnf waisoc_servicos > ~/web/servicosvilaverde.com.br/backup-banco/backup-servicosvilaverde-$(date +\%Y\%m\%d).sql
+find ~/web/servicosvilaverde.com.br/backup-banco/ -mtime +5 -exec rm -r {} \;

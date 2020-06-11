@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+
+<html ng-app="principal">
+	<head>
+		<title>Bella Vista</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css?2" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+
+	 <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157808252-6"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-157808252-6');
+		</script>
+
+
+	</head>
+	<body id="top" ng-controller="Controller as controller" >
+
+			<!-- Banner -->
+			<!--
+				To use a video as your background, set data-video to the name of your video without
+				its extension (eg. images/banner). Your video must be available in both .mp4 and .webm
+				formats to work correctly.
+			-->
+				<section id="banner" data-video="images/banner" ng-if="controller.flagCategorias">
+					<div class="inner">
+						<header>
+							<h1>Bella Vista</h1>
+							<h2>This website was developed to help our community and has all the services offered to residents.</h2>
+						</header>
+						<a href="javascript:void(0)"class="btn button fit style3" ng-click="cadastrar('home-cadastre-se')"><strong>Sign up and Login</strong></a>
+						<!-- <a href="atualizacoes.html"class="btn button fit style2">Atualizações</a> -->
+						<a href="#main" class="more" onclick="gtag('event', 'click', {'event_category' :'botao', 'event_label' :'veja-mais'});">See more</a>
+					</div>
+				</section>
+
+			<!-- Main -->
+				<div id="main">
+					<div class="inner" >
+						<div class="busca-wrapper" ng-if="controller.flagCategorias">
+							<h1 class="center">What service you are looking for:</h1>
+							<!-- <h3 class="busca-label">Type here:</h3> -->
+							<input class="busca" type="text" ng-model="controller.busca">
+							
+							<div ng-if="filtrado.length>0">
+								<h3 class="busca-label" >or</h3>
+								<h3 class="busca-label" >Navegate thru the categories below:</h3>
+							</div>
+							<h3 ng-if="filtrado.length<1" class="busca-label-nenhum-resultado" >No result was found with that name ... </h3>
+							<div >
+								<!-- <img ng-src="images/que-pena.png" alt="que pena" /> -->
+							</div>
+							<!-- Boxes -->
+							<div class="thumbnails">
+								<div class="box" ng-repeat="categoria in controller.categorias  | filter: controller.busca " ng-if="!categoria.deleted_at">
+									<a href="javascript:void(0)" class="image fit">
+										<img ng-src="images/categories/{{categoria.humanizada}}.jpg" alt="{{categoria.humanizada}}" ng-click="escolherCategoria(categoria, 'imagem')"/>
+									</a>
+									<div class="inner">
+										<h3>{{categoria.titulo}}</h3>
+										<!-- <p>{{categoria.descricao}}</p> -->
+										<a href="javascript:void(0)" class="button fit quero" ng-click="escolherCategoria(categoria, 'botao')">I want it!</a>
+										<!-- <a href="LICENSE.txt" data-poptrox="ajax,600x400"><img src="images/pic01.jpg" /></a> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="concorrentes" ng-if="!controller.flagCategorias">
+							<div class="button-wrapper">
+								<button class="button fit" ng-click="controller.flagCategorias=true">back</button>
+							</div>	
+							<div class="concorrentesRolagem">
+								<h3 class="center">Category you have choose: </h3>
+								<h2 class="center">{{controller.categoriaEscolhida.titulo}} </h2>
+								<a href="javascript:void(0)" class="imagem-link">
+									<img class="imagem" ng-src="images/categories/{{controller.categoriaEscolhida.humanizada}}.jpg" alt="{{controller.categoriaEscolhida.humanizada}}" width="300px"/>
+								</a>
+								<img class="pena" ng-if="!controller.categoriaEscolhida.concorrentes.length>0" ng-src="images/que-pena.png" alt="que pena" />
+								<a href="javascript:void(0)" ng-if="!controller.categoriaEscolhida.concorrentes.length>0" class="btn button fit style3" ng-click="cadastrar('interno')">I want to offer a service!</a>
+								<!-- <a href="javascript:void(0)"class="btn button fit style3" ng-click="cadastrar()">Cadastre-se</a> -->
+								<h2 ng-if="controller.categoriaEscolhida.concorrentes.length>0" class="center">The list below has the services with the category you choose:</h2>
+								<div class="thumbnails" ng-if="controller.categoriaEscolhida.concorrentes.length>0" >
+									<div class="box" ng-repeat="concorrente in controller.categoriaEscolhida.concorrentes" ng-if="concorrente.nomeFantasia">
+										<a href="javascript:void(0)" class="image fit">
+											<span class="letra" ng-if="!concorrente.logo">{{concorrente.nomeFantasia.substr(0,1)}}</span>
+											<img ng-if="!concorrente.logo" ng-src="images/logos/fundo1.jpg" alt="{{concorrente.nomeFantasia}}" />
+											<img ng-if="concorrente.logo" ng-src="back/public/upload/{{concorrente.logo}}" alt="{{concorrente.nomeFantasia}}" />
+										</a>
+										<div class="inner">
+											<h3>{{concorrente.nomeFantasia}}</h3>
+											<p class="text-left" ng-if="concorrente.descricao"><span class="descricao">Description:</span> {{concorrente.descricao}}</p>
+											<p class="text-left" ng-if="concorrente.telefone">
+												<span class="telefone">Phone Number:</span> 
+												<a href="tel:{{concorrente.telefone}}">{{concorrente.telefone}} (call now)</a>
+											</p>
+											<p class="text-left" ng-if="concorrente.celular">
+												<span class="celular">Mobile Phone Number:</span> 
+												<a href="tel:+1{{concorrente.celular}}">{{concorrente.celular}} (call now)</a>
+											</p>
+											<p class="text-left" ng-if="concorrente.email"><span class="email">Email:</span> {{concorrente.email}}</p>	
+											<p class="text-left" ng-if="concorrente.endereco"><span class="endereco">Address:</span> {{concorrente.endereco}}</p>
+											<p class="text-left" ng-if="concorrente.site"><span class="site">Website:</span> {{concorrente.site}}</p>
+											<ul class="icons">
+												<li ng-if="concorrente.celular">
+													<a class="icon fa-whatsapp" href="https://api.whatsapp.com/send?phone=+1{{concorrente.celular}}&text=Ol%C3%A1,%20gostaria%20de%20mais%20informações" target="_blank"> <span class="label">click here</span></a>
+												</li>
+												<li ng-if="concorrente.telefone">
+													<a class="icon fa-phone" href="tel:{{concorrente.telefone}}" target="_blank"> <span class="label">phone</span></a>
+												</li>
+												<li ng-if="concorrente.site">
+													<a class="icon fa-chain" href="https://{{concorrente.site}}" target="_blank"> <span class="label">whatsapp</span></a>
+												</li>
+												<li ng-if="concorrente.instagram">
+													<a class="icon fa-instagram" href="https://www.instagram.com/{{concorrente.instagram}}" target="_blank"> <span class="label">instagram</span></a>
+												</li>
+												<li ng-if="concorrente.facebook">
+													<a class="icon fa-facebook" href="https://www.facebook.com/{{concorrente.facebook}}" target="_blank"> <span class="label">facebook</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				 <footer id="footer">
+					<div class="inner">
+						
+						<ul class="icons">
+							<li><a href="http://www.washingtonluis.com" target="_blank" class="icon fa-chain" onclick="gtag('event', 'click', {'event_category' :'link', 'event_label' :'washingtonluis.com-index-link-ancora'});"><span class="label">Website</span></a></li>
+							<li><a href="https://www.linkedin.com/in/washington-morais-7a06b487/" target="_blank" class="icon fa-linkedin" onclick="gtag('event', 'click', {'event_category' :'link', 'event_label' :'washingtonluis.com-index-link-cartinha'});"><span class="label">Email</span></a></li>
+						</ul>
+						<p class="copyright">v1.0 - &copy; Developed by: <a href="http://washingtonluis.com" target="_blank" onclick="gtag('event', 'click', {'event_category' :'link', 'event_label' :'washingtonluis.com-index-link-quemproduziu'});">Washington Luis</a></p>
+					</div>
+				</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+			<script src="assets/js/app.js"></script>
+			<script src="assets/js/app-services.js"></script>
+	</body>
+</html>

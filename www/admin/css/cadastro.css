@@ -1,0 +1,32 @@
+#cadastro {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  margin-top: 78px;
+}
+#cadastro .botoes {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+#cadastro .thumb {
+  margin-top: 10px;
+}
+#cadastro form {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+#cadastro .form-group .exemplo {
+  background-color: #f1f1f1;
+  padding: 6px;
+  margin-top: 7px;
+}
+#cadastro .form-group .exemplo .exemplo-texto {
+  color: #487fff;
+  display: block;
+}
+#cadastro .form-group .exemplo .exemplo-link {
+  color: #5cb85c;
+  word-break: break-all;
+}

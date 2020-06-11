@@ -1,0 +1,10 @@
+deu certo usar o cliente URL
+nao posso deixar voltar a porcentagem da evolucao
+estou esquecendo as coisas que estou fazendo
+criei uma rota generica, batendo em uma controller generica
+fiz um if na api.php que soh aceita request vindo do ip do integrator
+
+deu certo!!! aleluia!
+bloqueio com token, rota segura, nao da pra acessar via browser nem via Curl
+
+preciso agora deixar as rotas genericas
