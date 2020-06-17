@@ -2,21 +2,25 @@
 
 <html ng-app="principal">
 	<head>
-		<title>Bella Vista</title>
+
+		<!-- Global site tag (gtag.js) - Google Analytics OK bayservice-->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157808252-9"></script>
+			<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-157808252-9');
+			</script>
+
+
+
+		<title>Bay Area Services</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css?2" />
 		<link rel="stylesheet" href="assets/css/custom.css" />
 
-	 <!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157808252-6"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-
-			gtag('config', 'UA-157808252-6');
-		</script>
 
 
 	</head>
@@ -31,7 +35,7 @@
 				<section id="banner" data-video="images/banner" ng-if="controller.flagCategorias">
 					<div class="inner">
 						<header>
-							<h1>Bella Vista</h1>
+							<h1>Bay Area Services</h1>
 							<h2>This website was developed to help our community and has all the services offered to residents.</h2>
 						</header>
 						<a href="javascript:void(0)"class="btn button fit style3" ng-click="cadastrar('home-cadastre-se')"><strong>Sign up and Login</strong></a>
